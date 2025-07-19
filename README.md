@@ -192,17 +192,3 @@ Restart container after edit.
 * Test harness (pytest) with mocked LLM for deterministic CI
 
 ---
-
-## License
-
-Choose a license (e.g., MIT) and add a `LICENSE` file.
-
----
-
-## Acknowledgments
-
-Inspired by the LangGraph multi‑agent tutorials and supervisor patterns. See the official blogs/documentation for deeper patterns (hierarchical teams, self‑refinement, shared blackboard memory, etc.).
-
----
-
-**Next?** Need a zipped repo scaffold, a FastAPI wrapper, or a vector agent added? Just ask.
