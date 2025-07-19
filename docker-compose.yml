@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  db:
+    build: ./postgres
+    container_name: pg_multi_agent
+    environment:
+      POSTGRES_USER: agent
+      POSTGRES_PASSWORD: agentpass
+      POSTGRES_DB: analytics
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agent -d analytics"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: ./app
+    container_name: langgraph_app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      DATABASE_URL: postgresql+psycopg2://agent:agentpass@db:5432/analytics
+      SEARCH_PROVIDER: duckduckgo
+      MAX_TOKENS: 4096
+    volumes:
+      - ./app:/workspace/app
+    working_dir: /workspace/app
+    command: ["python", "run.py"]

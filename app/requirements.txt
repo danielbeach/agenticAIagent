@@ -1,0 +1,10 @@
+langchain>=0.2.0
+langgraph>=0.0.57
+langchain-openai>=0.1.0
+langchain-community>=0.0.20
+psycopg2-binary
+SQLAlchemy>=2.0
+beautifulsoup4
+requests
+duckduckgo-search
+python-dotenv
